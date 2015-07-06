@@ -21,6 +21,7 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Categories</th>
+                        <th>Images</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,10 @@
                                     <li>{!! $category->name !!}</li>
                                 @endforeach
                                 </ul>
+                            </td>
+                            <td>
+                                <a href="{{ route('items.images.index', ['items' => $item->id]) }}">View</a> -
+                                <a href="{{ route('items.images.create', $item->id) }}">Add</a>
                             </td>
                         </tr>
                     @endforeach

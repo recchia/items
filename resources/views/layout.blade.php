@@ -22,15 +22,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Laravel</a>
+                <a class="navbar-brand" href="#">AOG</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ route('items.index') }}">Items <span class="sr-only">(current)</span></a></li>
-                    <li><a href="{{ route('images.index') }}">Images</a></li>
-                    <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                    <li class="{{ Request::is('items') ? 'active' : '' }}"><a href="{{ route('items.index') }}">Items <span class="sr-only">(current)</span></a></li>
+                    <li class="{{ Request::is('categories') ? 'active' : '' }}"><a href="{{ route('categories.index') }}">Categories</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Auth::guest())
+                        <li><a href="/auth/register">Register</a></li>
+                        <li><a href="/auth/login">Login</a></li>
+                    @else
+                        <li><a href="/auth/logout">Logout</a></li>
+                    @endif
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

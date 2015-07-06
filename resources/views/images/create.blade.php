@@ -3,7 +3,7 @@
 @section('content')
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
-            {!! Form::open(['route' => 'images.store', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true]) !!}
+            {!! Form::open(['route' => ['items.images.store', $item_id], 'method' => 'post', 'class' => 'form-horizontal', 'files' => true]) !!}
                 @foreach ($errors->all() as $error)
                     <p class="alert alert-danger">{{ $error }}</p>
                 @endforeach
@@ -14,12 +14,6 @@
                 @endif
                 <fieldset>
                     <legend>Submit a new Image</legend>
-                    <div class="form-group">
-                        {!! Form::label('item', 'Item', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::select('item', $items, null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
                     <div class="form-group">
                         {!! Form::label('image', 'Image', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">

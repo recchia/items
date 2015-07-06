@@ -24,7 +24,6 @@ class ImageFormRequest extends Request
     public function rules()
     {
         return [
-            'item' => 'required',
             'image' => 'required|mimes:jpeg,png'
         ];
     }

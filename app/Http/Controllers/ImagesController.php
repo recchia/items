@@ -16,38 +16,43 @@ class ImagesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param integer $item_id
+     *
      * @return Response
      */
-    public function index()
+    public function index($item_id)
     {
-        $images = Image::all();
+        $images = Image::where('item_id', $item_id)->get();
 
-        return view('images.index', compact('images'));
+        return view('images.index', compact('images', 'item_id'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param integer $item_id
+     *
      * @return Response
      */
-    public function create()
+    public function create($item_id)
     {
-        $items = Item::lists('name', 'id');
-
-        return view('images.create', compact('items'));
+        return view('images.create', compact('item_id'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param integer $item_id
+     * @param ImageFormRequest $request
+     *
      * @return Response
      */
-    public function store(ImageFormRequest $request)
+    public function store($item_id, ImageFormRequest $request)
     {
         $imageName = uniqid('img') . '.' . $request->file('image')->getClientOriginalExtension();
 
         $image = new Image([
-            'item_id' => $request->get('item'),
+            'item_id' => $item_id,
             'image' => $imageName
         ]);
 
@@ -55,20 +60,21 @@ class ImagesController extends Controller
 
         $request->file('image')->move(base_path() . '/public/img/catalog/', $imageName);
 
-        return redirect()->route('images.create')->with('status', 'Your image has been uploaded!');
+        return redirect()->route('items.images.create', ['items' => $item_id])->with('status', 'Your image has been uploaded!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $item_id
+     * @param  int  $image_id
      * @return Response
      */
-    public function show($id)
+    public function show($item_id, $image_id)
     {
-        $image = Image::whereId($id)->firstOrFail();
+        $image = Image::whereId($image_id)->firstOrFail();
 
-        return view('images.show', compact('image'));
+        return view('images.show', compact('image', 'item_id'));
     }
 
     /**

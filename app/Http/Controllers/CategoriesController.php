@@ -11,6 +11,11 @@ use App\Category;
 
 class CategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +35,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::lists('name', 'id');
 
         return view('categories.create', compact('categories'));
     }
@@ -42,10 +47,11 @@ class CategoriesController extends Controller
      */
     public function store(CategoryFormRequest $request)
     {
-        $category = new Category([
-            'name' => $request->get('name'),
-            'parent_id' => $request->get('parent_id', 0)
-        ]);
+        $category = new Category();
+        $category->name = $request->get('name');
+        if (!empty($request->get('parent'))) {
+            $category->parent_id = $request->get('parent');
+        }
 
         $category->save();
 
@@ -75,7 +81,7 @@ class CategoriesController extends Controller
     {
         $category = Category::whereId($id)->firstOrFail();
 
-        $categories = Category::where('id', '<>', $id)->get();
+        $categories = Category::lists('name', 'id');
 
         return view('categories.edit', compact('category', 'categories'));
     }
@@ -90,7 +96,9 @@ class CategoriesController extends Controller
     {
         $category = Category::whereId($id)->firstOrFail();
         $category->name = $request->get('name');
-        $category->parent_id = $request->get('parent_id', 0);
+        if (!empty($request->get('parent'))) {
+            $category->parent_id = $request->get('parent');
+        }
         $category->save();
 
         return redirect()->route('categories.edit', ['id' => $category->id])->with('status', 'The category '.$category->name.' has been updated!');

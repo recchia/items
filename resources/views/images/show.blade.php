@@ -7,15 +7,14 @@
                 <h2 class="header"><img src="{{ asset('img/catalog/' . $image->image) }}"></h2>
                 <p> {!! $image->item->name !!} </p>
             </div>
-            <!--<a href="{{ route('images.edit', ['id' => $image->id]) }}" class="btn btn-info">Edit</a>//-->
-            <form method="post" action="{!! action('ImagesController@destroy', $image->id) !!}" class="pull-left">
-            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            {!! Form::open(['route' => ['items.images.destroy', $item_id, $image->id], 'method' => 'post', 'class' => 'pull-left']) !!}
+            {!! Form::hidden('_method', 'DELETE') !!}
             <div class="form-group">
                 <div>
-                    <button type="submit" class="btn btn-warning">Delete</button>
+                    {!! Form::submit('Delete', ['class' => 'btn btn-warning']) !!}
                 </div>
             </div>
-            </form>
+            {!! Form::close() !!}
             <div class="clearfix"></div>
         </div>
     </div>
