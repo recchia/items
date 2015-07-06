@@ -2,8 +2,14 @@
 <head>
     <title>Home Page</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"-->
+
+    {!! Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css') !!}
+    {!! Html::style('bower_components/bootstrap-material-design/dist/css/material.min.css') !!}
+    {!! Html::style('bower_components/bootstrap-material-design/dist/css/ripples.min.css') !!}
+    {!! Html::style('bower_components/bootstrap-material-design/dist/css/material-fullpalette.min.css') !!}
+    {!! Html::style('bower_components/bootstrap-material-design/dist/css/roboto.min.css') !!}
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -46,5 +52,17 @@
         @yield('content')
     </div>
 </div>
+
+    {!! Html::script('bower_components/jquery/dist/jquery.js') !!}
+    {!! Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
+    {!! Html::script('bower_components/bootstrap-material-design/dist/js/material.min.js') !!}
+    {!! Html::script('bower_components/bootstrap-material-design/dist/js/ripples.min.js') !!}
+
+    <script type="text/javascript">
+        $(document).on('ready',function(){
+            $.material.init();
+        });
+    </script>
+
 </body>
 </html>
