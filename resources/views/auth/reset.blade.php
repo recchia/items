@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('welcome')
 
 @section('content')
     <div class="container col-md-8 col-md-offset-2">

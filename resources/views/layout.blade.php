@@ -38,12 +38,7 @@
                     <li class="{{ Request::is('categories') ? 'active' : '' }}"><a href="{{ route('categories.index') }}">Categories</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (Auth::guest())
-                        <li><a href="/auth/register">Register</a></li>
-                        <li><a href="/auth/login">Login</a></li>
-                    @else
-                        <li><a href="/auth/logout">Logout</a></li>
-                    @endif
+                    <li><a href="/auth/logout">Logout</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

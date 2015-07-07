@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('welcome')
 
 @section('content')
     <div class="container col-md-8 col-md-offset-2">
@@ -30,6 +30,17 @@
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <button class="btn btn-primary" type="submit">Login</button>
+                        <a href="/password/email" style="margin-left: 0.5em;">Forgot my password?</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 control">
+                        <div style="border-top: 1px solid#888; padding-top:15px;">
+                            Don't have an account!
+                            <a href="/auth/register">
+                                Sign Up Here
+                            </a>
+                        </div>
                     </div>
                 </div>
                 </fieldset>
