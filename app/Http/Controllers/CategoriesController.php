@@ -55,7 +55,7 @@ class CategoriesController extends Controller
 
         $category->save();
 
-        return redirect()->route('categories.create')->with('status', 'Your category has been created!');
+        return redirect()->route('categories.create')->with('status', 'The category ' . $category->name . ' has been created!');
     }
 
     /**

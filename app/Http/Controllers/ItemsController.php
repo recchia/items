@@ -57,7 +57,7 @@ class ItemsController extends Controller
 
         $item->categories()->attach($request->input('categories'));
 
-        return redirect()->route('items.create')->with('status', 'Your item has been created!');
+        return redirect()->route('items.create')->with('status', 'The item ' . $item->name . 'has been created!');
     }
 
     /**
